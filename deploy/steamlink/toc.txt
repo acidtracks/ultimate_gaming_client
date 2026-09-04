@@ -1,3 +1,3 @@
-name=Moonlight TV
-icon=moonlight.png
-run=moonlight.sh
+name=Ultimate Gaming Client
+icon=ultimate-gaming-client.png
+run=ultimate-gaming-client.sh

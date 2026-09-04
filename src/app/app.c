@@ -38,11 +38,11 @@ app_t *global = NULL;
 int app_init(app_t *app, app_settings_loader *settings_loader, int argc, char *argv[]) {
     assert(settings_loader != NULL);
     memset(app, 0, sizeof(*app));
-    commons_logging_init("moonlight");
+    commons_logging_init("ultimate_gaming_client");
     SDL_LogSetOutputFunction(commons_sdl_log, NULL);
     SDL_SetAssertionHandler(app_assertion_handler_abort, NULL);
     SDL_Init(0);
-    commons_log_info("APP", "Start Moonlight. Version %s", APP_VERSION);
+    commons_log_info("APP", "Start Ultimate Gaming Client. Version %s", APP_VERSION);
     settings_loader(&app->settings);
     app->main_thread_id = SDL_ThreadID();
     app->running = true;

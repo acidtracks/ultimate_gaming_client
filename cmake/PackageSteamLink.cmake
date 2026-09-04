@@ -1,11 +1,11 @@
 if (NOT DEFINED CMAKE_INSTALL_PREFIX)
-    set(CMAKE_INSTALL_PREFIX moonlight-tv)
+    set(CMAKE_INSTALL_PREFIX ultimate-gaming-client)
 endif ()
 
 # Copy all files under deploy/webos/ to package root
 install(DIRECTORY deploy/steamlink/ DESTINATION ${CMAKE_INSTALL_PREFIX} USE_SOURCE_PERMISSIONS PATTERN ".*" EXCLUDE)
 
-set(CPACK_PACKAGE_NAME "moonlight-tv")
+set(CPACK_PACKAGE_NAME "ultimate-gaming-client")
 set(CPACK_GENERATOR "ZIP")
 set(CPACK_MONOLITHIC_INSTALL TRUE)
 set(CPACK_PACKAGE_DIRECTORY ${CMAKE_SOURCE_DIR}/dist)
@@ -19,15 +19,15 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     set(CPACK_STRIP_FILES TRUE)
 endif ()
 
-add_custom_target(steamlink-package-moonlight COMMAND cpack DEPENDS moonlight)
+add_custom_target(steamlink-package-ugc COMMAND cpack DEPENDS ultimate_gaming_client)
 
 if (NOT ENV{CI})
-    add_custom_target(steamlink-install-moonlight
+    add_custom_target(steamlink-install-ugc
             COMMAND scp "${CPACK_PACKAGE_FILE_NAME}.zip" steamlink:/tmp/
             COMMAND ssh steamlink 'unzip -o /tmp/${CPACK_PACKAGE_FILE_NAME}.zip -d /home/apps/'
             COMMAND ssh steamlink 'rm -f /tmp/${CPACK_PACKAGE_FILE_NAME}.zip'
             WORKING_DIRECTORY ${CPACK_PACKAGE_DIRECTORY}
-            DEPENDS steamlink-package-moonlight)
+            DEPENDS steamlink-package-ugc)
 endif ()
 
 include(CPack)

@@ -5,7 +5,7 @@
 #include "uuidstr.h"
 
 static int argc = 1;
-static char *argv[] = {"moonlight"};
+static char *argv[] = {"ultimate-gaming-client"};
 
 app_t app;
 
@@ -15,7 +15,7 @@ static int settingsLoader(app_settings_t *settings) {
     char *path = malloc(128);
     uuidstr_t uuid;
     uuidstr_random(&uuid);
-    snprintf(path, 128, "/tmp/moonlight-test-%s", (char *) &uuid);
+    snprintf(path, 128, "/tmp/ultimate-gaming-client-test-%s", (char *) &uuid);
     settings_initialize(settings, path);
     app.ui.dpi = 320;
     initSettings(settings);

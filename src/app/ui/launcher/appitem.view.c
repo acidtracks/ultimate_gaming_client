@@ -2,7 +2,7 @@
 #include "res.h"
 
 #include "draw/sdl/lv_draw_sdl_utils.h"
-#include "lvgl/theme/lv_theme_moonlight.h"
+#include "lvgl/theme/lv_theme_ugc.h"
 
 static void appitem_holder_free_cb(lv_event_t *event);
 
@@ -81,7 +81,7 @@ void appitem_style_init(appitem_styles_t *style) {
     lv_style_set_bg_opa(&style->btn, LV_OPA_COVER);
     lv_style_set_text_color(&style->btn, lv_color_black());
     lv_style_set_border_opa(&style->btn, LV_OPA_TRANSP);
-    lv_style_set_text_font(&style->btn, lv_theme_moonlight_get_iconfont_large(lv_scr_act()));
+    lv_style_set_text_font(&style->btn, lv_theme_ugc_get_iconfont_large(lv_scr_act()));
     lv_style_set_shadow_width(&style->btn, LV_DPX(4));
     lv_style_set_shadow_color(&style->btn, lv_color_black());
     lv_style_set_shadow_opa(&style->btn, LV_OPA_30);

@@ -14,7 +14,7 @@ void setUp() {
     char *dir = malloc(128);
     uuidstr_t uuid;
     uuidstr_random(&uuid);
-    snprintf(dir, 128, "/tmp/moonlight-%s", (char *) &uuid);
+    snprintf(dir, 128, "/tmp/ultimate-gaming-client-%s", (char *) &uuid);
     settings_initialize(&settings, dir);
 }
 

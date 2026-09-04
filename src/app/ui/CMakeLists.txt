@@ -1,4 +1,4 @@
-target_sources(moonlight-lib PRIVATE
+target_sources(ultimate-gaming-client-lib PRIVATE
         root.c
         ui_input.c
         fatal_error.c

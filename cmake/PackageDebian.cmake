@@ -1,5 +1,5 @@
 set(CPACK_GENERATOR "DEB")
-set(CPACK_DEBIAN_PACKAGE_NAME "moonlight-tv")
+set(CPACK_DEBIAN_PACKAGE_NAME "ultimate-gaming-client")
 set(CPACK_DEBIAN_PACKAGE_VERSION "${PROJECT_VERSION}")
 if (CMAKE_C_COMPILER_TARGET MATCHES "arm.*")
     if(CMAKE_C_COMPILER_TARGET MATCHES "gnueabihf")
@@ -19,7 +19,7 @@ endif()
 
 set(CPACK_DEBIAN_PACKAGE_SUMMARY "Open Source NVIDIA GameStream Client")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Mariotaku Lee <mariotaku.lee@gmail.com>")
-set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://github.com/mariotaku/moonlight-tv")
+set(CPACK_DEBIAN_PACKAGE_HOMEPAGE "https://github.com/acidtracks/ultimate_gaming_client")
 set(CPACK_DEBIAN_PACKAGE_SECTION "games")
 # set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
 # set(CPACK_DEBIAN_PACKAGE_GENERATE_SHLIBS_POLICY ">=")
@@ -70,8 +70,8 @@ string(REPLACE ";" ", " CPACK_DEBIAN_PACKAGE_SUGGESTS "${CPACK_DEBIAN_PACKAGE_SU
 
 set(CPACK_PACKAGE_FILE_NAME "${CPACK_DEBIAN_PACKAGE_NAME}-${CPACK_DEBIAN_PACKAGE_VERSION}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}")
 
-install(FILES deploy/linux/moonlight-tv.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
-install(FILES deploy/linux/moonlight-tv.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pixmaps)
+install(FILES deploy/linux/ultimate-gaming-client.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+install(FILES deploy/linux/ultimate-gaming-client.png DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pixmaps)
 install(DIRECTORY ${CMAKE_BINARY_DIR}/mo/ DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/locale)
 install(DIRECTORY ${CMAKE_BINARY_DIR}/mo/ DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/locale)
 

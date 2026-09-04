@@ -81,7 +81,7 @@ typedef struct audio_config_entry_t {
 extern const audio_config_entry_t audio_configs[];
 extern const size_t audio_config_len;
 
-#define CONF_NAME_MOONLIGHT "moonlight.ini"
+#define CONF_NAME_APP "ultimate_gaming_client.ini"
 #define CONF_NAME_HOSTS "hosts.ini"
 
 #define RES_MERGE(w, h) (((w) & 0xFFFF) << 16 | ((h) & 0xFFFF))

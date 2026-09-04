@@ -5,7 +5,7 @@
 #include "hints.h"
 
 #include "lvgl/ext/lv_child_group.h"
-#include "lvgl/theme/lv_theme_moonlight.h"
+#include "lvgl/theme/lv_theme_ugc.h"
 
 static lv_obj_t *stat_label(lv_obj_t *parent, const char *title);
 
@@ -224,7 +224,7 @@ static lv_obj_t *overlay_title(lv_obj_t *parent, const char *title, streaming_co
     lv_obj_set_ext_click_area(stats_pin, LV_DPX(5));
 
     lv_obj_t *stat_pin_content = lv_img_create(stats_pin);
-    lv_obj_set_style_text_font(stat_pin_content, lv_theme_moonlight_get_iconfont_small(stat_pin_content), 0);
+    lv_obj_set_style_text_font(stat_pin_content, lv_theme_ugc_get_iconfont_small(stat_pin_content), 0);
     lv_img_set_src(stat_pin_content, MAT_SYMBOL_PUSH_PIN);
 
     lv_obj_align(stats_pin, LV_ALIGN_RIGHT_MID, 0, 0);

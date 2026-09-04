@@ -32,10 +32,10 @@ void app_open_url(const char *url) {
 void app_init_locale() {
     const char *textdomaindir = getenv("TEXTDOMAINDIR");
     if (textdomaindir) {
-        bindtextdomain("moonlight-tv", textdomaindir);
-        bind_textdomain_codeset("moonlight-tv", "UTF-8");
+        bindtextdomain("ultimate-gaming-client", textdomaindir);
+        bind_textdomain_codeset("ultimate-gaming-client", "UTF-8");
     }
-    textdomain("moonlight-tv");
+    textdomain("ultimate-gaming-client");
     i18n_setlocale("");
 }
 

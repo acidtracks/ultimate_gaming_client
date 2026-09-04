@@ -14,7 +14,7 @@ else ()
     message(FATAL_ERROR "Unknown target OS")
 endif ()
 
-target_sources(moonlight-lib PRIVATE
+target_sources(ultimate-gaming-client-lib PRIVATE
         sdl/bus.c
         sdl/navkey_sdl.c
         common/i18n_common.c

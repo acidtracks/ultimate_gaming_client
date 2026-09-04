@@ -39,7 +39,7 @@ lv_obj_t *help_dialog_create() {
     add_url_button(list, locstr("Remote controller keys"),
                    "https://github.com/mariotaku/moonlight-tv/wiki/Input-Shortcuts#webos-remote-controller");
     lv_list_add_text(list, locstr("More help"));
-    add_url_button(list, locstr("Open moonlight-tv Wiki"),
+    add_url_button(list, locstr("Open ultimate-gaming-client Wiki"),
                    "https://github.com/mariotaku/moonlight-tv/wiki");
     add_url_button(list, locstr("Open moonlight-stream Wiki"),
                    "https://github.com/moonlight-stream/moonlight-docs/wiki");

@@ -1,14 +1,14 @@
 #include "res.h"
 
-#include "gen/moonlight.h"
+#include "gen/app_icon.h"
 #include "gen/fav_indicator.h"
 #include "gen/defcover.h"
 #include "gen/material_icons_regular_ttf.h"
 
 const lv_sdl_img_data_t lv_sdl_img_data_logo_96 = {
         .type = LV_SDL_IMG_TYPE_CONST_PTR,
-        .data.constptr = res_moonlight_data,
-        .data_len = res_moonlight_size,
+        .data.constptr = res_app_icon_data,
+        .data_len = res_app_icon_size,
 };
 
 const lv_sdl_img_data_t lv_sdl_img_data_fav_indicator = {

@@ -1,4 +1,4 @@
-target_sources(moonlight-lib PRIVATE
+target_sources(ultimate-gaming-client-lib PRIVATE
         path.c
         img_loader.c
         nullable.c

@@ -24,7 +24,7 @@ install(CODE "file(MAKE_DIRECTORY \"\${CMAKE_INSTALL_PREFIX}/assets\")"
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} COMMAND_ERROR_IS_FATAL ANY)")
 
 # Fake library for cURL ABI issue
-add_dependencies(moonlight commons-curl-abi-fix)
+add_dependencies(ultimate_gaming_client commons-curl-abi-fix)
 install(TARGETS commons-curl-abi-fix LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} NAMELINK_SKIP)
 
 set(CPACK_PACKAGE_NAME "${WEBOS_APPINFO_ID}")
@@ -48,20 +48,20 @@ set(CPACK_THREADS 0)
 
 set(CPACK_STRIP_FILES FALSE)
 
-add_custom_target(webos-package-moonlight COMMAND cpack DEPENDS moonlight)
+add_custom_target(webos-package-ugc COMMAND cpack DEPENDS ultimate_gaming_client)
 
 if (NOT ENV{CI})
-    add_custom_target(webos-verify-moonlight COMMAND webosbrew-ipk-verify -S -d "${CPACK_PACKAGE_FILE_NAME}.ipk"
+    add_custom_target(webos-verify-ugc COMMAND webosbrew-ipk-verify -S -d "${CPACK_PACKAGE_FILE_NAME}.ipk"
             WORKING_DIRECTORY ${CPACK_PACKAGE_DIRECTORY}
-            DEPENDS webos-package-moonlight)
+            DEPENDS webos-package-ugc)
     if (ENV{ARES_DEVICE})
         set(ares_arguments "-d" $ENV{ARES_DEVICE})
     endif ()
-    add_custom_target(webos-install-moonlight COMMAND ares-install "${CPACK_PACKAGE_FILE_NAME}.ipk" ${ares_arguments}
+    add_custom_target(webos-install-ugc COMMAND ares-install "${CPACK_PACKAGE_FILE_NAME}.ipk" ${ares_arguments}
             WORKING_DIRECTORY ${CPACK_PACKAGE_DIRECTORY}
-            DEPENDS webos-package-moonlight)
-    add_custom_target(webos-launch-moonlight COMMAND ares-launch "${WEBOS_APPINFO_ID}" ${ares_arguments}
-            DEPENDS webos-install-moonlight)
+            DEPENDS webos-package-ugc)
+    add_custom_target(webos-launch-ugc COMMAND ares-launch "${WEBOS_APPINFO_ID}" ${ares_arguments}
+            DEPENDS webos-install-ugc)
 endif ()
 
 include(CPack)

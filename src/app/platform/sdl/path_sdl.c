@@ -9,7 +9,7 @@ char *path_assets() {
 }
 
 char *path_pref(bool *persistent) {
-    char *path = SDL_GetPrefPath("com.limelight", "moonlight-tv");
+    char *path = SDL_GetPrefPath("com.limelight", "ultimate-gaming-client");
     unsigned int len = SDL_strlen(path);
     if (len && path[len - 1] == PATH_SEPARATOR) {
         path[len - 1] = '\0';
@@ -20,7 +20,7 @@ char *path_pref(bool *persistent) {
 
 char *path_cache() {
     char *cachedir = path_cache_parent();
-    char *appcache = path_join(cachedir, "moonlight-tv");
+    char *appcache = path_join(cachedir, "ultimate-gaming-client");
     SDL_free(cachedir);
     path_dir_ensure(appcache);
     return appcache;
@@ -30,7 +30,7 @@ static char *path_cache_parent() {
 #ifdef __WIN32
     char *appdata = SDL_getenv("LOCALAPPDATA");
     SDL_assert_release(appdata);
-    char *appdir = path_join(appdata, "moonlight-tv");
+    char *appdir = path_join(appdata, "ultimate-gaming-client");
     path_dir_ensure(appdir);
     char *cachedir = path_join(appdir, "cache");
     SDL_free(appdir);
@@ -45,7 +45,7 @@ static char *path_cache_parent() {
         path_dir_ensure(cachedir);
         return cachedir;
     }
-    cachedir = path_join("/tmp", "moonlight-tv-cache");
+    cachedir = path_join("/tmp", "ultimate-gaming-client-cache");
     path_dir_ensure(cachedir);
     return cachedir;
 #endif

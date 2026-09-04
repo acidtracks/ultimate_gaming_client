@@ -3,7 +3,7 @@
 #include "res.h"
 
 #include "lvgl/lv_disp_drv_app.h"
-#include "lvgl/theme/lv_theme_moonlight.h"
+#include "lvgl/theme/lv_theme_ugc.h"
 #include "draw/sdl/lv_draw_sdl_utils.h"
 
 #include "stream/session.h"
@@ -56,7 +56,7 @@ void app_ui_init(app_ui_t *ui, app_t *app) {
     ui->img_decoder = lv_sdl_img_decoder_init(IMG_INIT_JPG | IMG_INIT_PNG);
     app_font_init(&ui->fonts, ui->dpi);
     lv_memset_00(&ui->theme, sizeof(lv_theme_t));
-    lv_theme_moonlight_init(&ui->theme, &ui->fonts, app);
+    lv_theme_ugc_init(&ui->theme, &ui->fonts, app);
 }
 
 void app_ui_deinit(app_ui_t *ui) {
@@ -64,7 +64,7 @@ void app_ui_deinit(app_ui_t *ui) {
         SDL_GetWindowPosition(ui->window, &app_configuration->window_state.x, &app_configuration->window_state.y);
         SDL_GetWindowSize(ui->window, &app_configuration->window_state.w, &app_configuration->window_state.h);
     }
-    lv_theme_moonlight_deinit(&ui->theme);
+    lv_theme_ugc_deinit(&ui->theme);
     app_font_deinit(&ui->fonts);
     lv_img_decoder_delete(ui->img_decoder);
 }

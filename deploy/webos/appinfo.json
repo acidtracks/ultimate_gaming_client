@@ -3,7 +3,7 @@
     "version": "@PROJECT_VERSION@",
     "vendor": "AcidTracks",
     "type": "native",
-    "main": "bin/moonlight",
+    "main": "bin/ultimate-gaming-client",
     "title": "Ultimate Gaming Client",
     "icon": "icon.png",
     "iconColor": "#ffffff",

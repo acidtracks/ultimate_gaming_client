@@ -2,22 +2,22 @@ cmake_minimum_required(VERSION 3.19)
 set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
 
 execute_process(COMMAND git describe --tags --abbrev=0 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        OUTPUT_VARIABLE MOONLIGHT_VERSION ERROR_QUIET)
-if (MOONLIGHT_VERSION)
-    string(STRIP "${MOONLIGHT_VERSION}" MOONLIGHT_VERSION)
-    string(SUBSTRING "${MOONLIGHT_VERSION}" 1 -1 MOONLIGHT_VERSION)
+        OUTPUT_VARIABLE UGC_VERSION ERROR_QUIET)
+if (UGC_VERSION)
+    string(STRIP "${UGC_VERSION}" UGC_VERSION)
+    string(SUBSTRING "${UGC_VERSION}" 1 -1 UGC_VERSION)
 else ()
     execute_process(COMMAND curl -s "https://api.github.com/repos/acidtracks/ultimate_gaming_client/releases/latest"
-            OUTPUT_VARIABLE MOONLIGHT_LATEST_RELEASE ERROR_QUIET)
-    string(JSON MOONLIGHT_VERSION GET "${MOONLIGHT_LATEST_RELEASE}" "tag_name")
-    if (MOONLIGHT_VERSION)
-        string(REGEX REPLACE "v([0-9]+)" "\\1" MOONLIGHT_VERSION "${MOONLIGHT_VERSION}")
+            OUTPUT_VARIABLE UGC_LATEST_RELEASE ERROR_QUIET)
+    string(JSON UGC_VERSION GET "${UGC_LATEST_RELEASE}" "tag_name")
+    if (UGC_VERSION)
+        string(REGEX REPLACE "v([0-9]+)" "\\1" UGC_VERSION "${UGC_VERSION}")
     else ()
-        set(MOONLIGHT_VERSION "0.0.0")
+        set(UGC_VERSION "0.0.0")
     endif ()
 endif ()
 
-project(moonlight VERSION ${MOONLIGHT_VERSION} LANGUAGES C)
+project(ultimate_gaming_client VERSION ${UGC_VERSION} LANGUAGES C)
 
 # To suppress warnings for MbedTLS
 if (POLICY CMP0048)
@@ -104,15 +104,15 @@ if (TARGET_WEBOS)
     set(CMAKE_INSTALL_RPATH "$ORIGIN/lib/backports:$ORIGIN/../lib/backports:$ORIGIN")
 elseif (TARGET_STEAMLINK)
     set(OS_LINUX TRUE)
-    set(CMAKE_INSTALL_PREFIX moonlight-tv)
-    set(CMAKE_INSTALL_BINDIR moonlight-tv/bin)
-    set(CMAKE_INSTALL_LIBDIR moonlight-tv/lib)
+    set(CMAKE_INSTALL_PREFIX ultimate-gaming-client)
+    set(CMAKE_INSTALL_BINDIR ultimate-gaming-client/bin)
+    set(CMAKE_INSTALL_LIBDIR ultimate-gaming-client/lib)
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(OS_LINUX TRUE)
 
     set(CMAKE_INSTALL_PREFIX /usr)
     include(GNUInstallDirs)
-    set(CMAKE_INSTALL_FULL_LIBDIR ${CMAKE_INSTALL_FULL_LIBDIR}/moonlight-tv)
+    set(CMAKE_INSTALL_FULL_LIBDIR ${CMAKE_INSTALL_FULL_LIBDIR}/ultimate-gaming-client)
     set(CMAKE_INSTALL_LIBDIR ${CMAKE_INSTALL_FULL_LIBDIR})
     set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_FULL_LIBDIR})
 else ()
@@ -236,47 +236,47 @@ add_subdirectory(third_party/commons)
 target_include_directories(lv_gridview SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS})
 target_include_directories(lv_sdl_img SYSTEM PRIVATE ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS})
 
-add_executable(moonlight src/main.c)
-add_library(moonlight-lib STATIC)
-target_link_libraries(moonlight PRIVATE moonlight-lib)
+add_executable(ultimate_gaming_client src/main.c)
+add_library(ultimate-gaming-client-lib STATIC)
+target_link_libraries(ultimate_gaming_client PRIVATE ultimate-gaming-client-lib)
 
-target_compile_lint(moonlight-lib)
+target_compile_lint(ultimate-gaming-client-lib)
 
-set_target_properties(moonlight-lib PROPERTIES
+set_target_properties(ultimate-gaming-client-lib PROPERTIES
         C_STANDARD 11
         C_STANDARD_REQUIRED TRUE
         )
 
-target_compile_definitions(moonlight-lib PUBLIC "$<$<CONFIG:DEBUG>:DEBUG>")
+target_compile_definitions(ultimate-gaming-client-lib PUBLIC "$<$<CONFIG:DEBUG>:DEBUG>")
 string(LENGTH ${CMAKE_SOURCE_DIR} SOURCE_DIR_LENGTH)
-target_compile_definitions(moonlight-lib PUBLIC SOURCE_DIR_LENGTH=${SOURCE_DIR_LENGTH})
-target_compile_definitions(moonlight-lib PUBLIC APP_VERSION="${PROJECT_VERSION}" APPLOG_HOST=1)
-target_compile_definitions(moonlight-lib PUBLIC LV_LVGL_H_INCLUDE_SIMPLE=1)
+target_compile_definitions(ultimate-gaming-client-lib PUBLIC SOURCE_DIR_LENGTH=${SOURCE_DIR_LENGTH})
+target_compile_definitions(ultimate-gaming-client-lib PUBLIC APP_VERSION="${PROJECT_VERSION}" APPLOG_HOST=1)
+target_compile_definitions(ultimate-gaming-client-lib PUBLIC LV_LVGL_H_INCLUDE_SIMPLE=1)
 
-target_include_directories(moonlight-lib PUBLIC ${CMAKE_SOURCE_DIR}/core/libgamestream)
+target_include_directories(ultimate-gaming-client-lib PUBLIC ${CMAKE_SOURCE_DIR}/core/libgamestream)
 
-target_include_directories(moonlight-lib PUBLIC ${CMAKE_SOURCE_DIR}/utils/include)
+target_include_directories(ultimate-gaming-client-lib PUBLIC ${CMAKE_SOURCE_DIR}/utils/include)
 
 if (MINGW)
-    target_link_libraries(moonlight-lib PUBLIC libintl.a libiconv.a)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC libintl.a libiconv.a)
 elseif (OS_DARWIN)
-    target_link_libraries(moonlight-lib PUBLIC libintl.a)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC libintl.a)
 endif ()
 
-target_include_directories(moonlight-lib SYSTEM PUBLIC ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS}
+target_include_directories(ultimate-gaming-client-lib SYSTEM PUBLIC ${SDL2_INCLUDE_DIRS} ${SDL2_IMAGE_INCLUDE_DIRS}
         ${FREETYPE_INCLUDE_DIRS} ${INIH_INCLUDE_DIRS})
-target_link_libraries(moonlight-lib PUBLIC
+target_link_libraries(ultimate-gaming-client-lib PUBLIC
         m ${CMAKE_DL_LIBS} Threads::Threads ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES}
         moonlight-common-c gamestream lvgl ${INIH_LIBRARIES} ${CURL_LIBRARIES}
         Fontconfig::Fontconfig ${FREETYPE_LIBRARIES})
 
-target_link_libraries(moonlight-lib PUBLIC lv_gridview lv_sdl_img)
+target_link_libraries(ultimate-gaming-client-lib PUBLIC lv_gridview lv_sdl_img)
 
-target_include_directories(moonlight-lib SYSTEM PUBLIC ${OPUS_INCLUDE_DIRS})
-target_link_libraries(moonlight-lib PUBLIC ${OPUS_LIBRARIES})
+target_include_directories(ultimate-gaming-client-lib SYSTEM PUBLIC ${OPUS_INCLUDE_DIRS})
+target_link_libraries(ultimate-gaming-client-lib PUBLIC ${OPUS_LIBRARIES})
 
-target_include_directories(moonlight-lib SYSTEM PUBLIC ${MBEDTLS_INCLUDE_DIRS})
-target_link_libraries(moonlight-lib PUBLIC ${MBEDCRYPTO_LIBRARY} ${MBEDX509_LIBRARY})
+target_include_directories(ultimate-gaming-client-lib SYSTEM PUBLIC ${MBEDTLS_INCLUDE_DIRS})
+target_link_libraries(ultimate-gaming-client-lib PUBLIC ${MBEDCRYPTO_LIBRARY} ${MBEDX509_LIBRARY})
 
 if (TARGET_WEBOS)
     set(FEATURE_FORCE_FULLSCREEN ON)
@@ -287,74 +287,74 @@ if (TARGET_WEBOS)
     set(FEATURE_WINDOW_FULLSCREEN_DESKTOP OFF)
     set(FEATURE_INPUT_EVMOUSE ON)
 
-    target_compile_definitions(moonlight-lib PUBLIC TARGET_WEBOS OS_LINUX _GNU_SOURCE APPID="${WEBOS_APPINFO_ID}")
-    target_compile_definitions(moonlight-lib PUBLIC GAMECONTROLLERDB_PLATFORM="webOS" GAMECONTROLLERDB_PLATFORM_USE="Linux")
+    target_compile_definitions(ultimate-gaming-client-lib PUBLIC TARGET_WEBOS OS_LINUX _GNU_SOURCE APPID="${WEBOS_APPINFO_ID}")
+    target_compile_definitions(ultimate-gaming-client-lib PUBLIC GAMECONTROLLERDB_PLATFORM="webOS" GAMECONTROLLERDB_PLATFORM_USE="Linux")
 
-    target_include_directories(moonlight-lib SYSTEM PUBLIC ${PBNJSON_C_INCLUDE_DIRS} ${PMLOG_INCLUDE_DIRS}
+    target_include_directories(ultimate-gaming-client-lib SYSTEM PUBLIC ${PBNJSON_C_INCLUDE_DIRS} ${PMLOG_INCLUDE_DIRS}
             ${WEBOSI18N_INCLUDE_DIRS})
-    target_link_libraries(moonlight-lib PUBLIC ${PBNJSON_C_LIBRARIES} ${PMLOG_LIBRARIES} ${WEBOSI18N_LIBRARIES})
-    target_link_libraries(moonlight-lib PUBLIC commons-luna-sync)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC ${PBNJSON_C_LIBRARIES} ${PMLOG_LIBRARIES} ${WEBOSI18N_LIBRARIES})
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-luna-sync)
 else ()
     if (TARGET_STEAMLINK)
         set(FEATURE_FORCE_FULLSCREEN ON)
         set(FEATURE_WINDOW_FULLSCREEN_DESKTOP OFF)
-        target_compile_definitions(moonlight-lib PUBLIC TARGET_STEAMLINK)
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC TARGET_STEAMLINK)
     endif ()
     if (OS_DARWIN)
-        target_link_directories(moonlight-lib PUBLIC ${SDL2_LIBRARIES})
-        target_compile_definitions(moonlight-lib PUBLIC OS_DARWIN)
-        target_compile_definitions(moonlight-lib PUBLIC GAMECONTROLLERDB_PLATFORM="Mac OS X")
+        target_link_directories(ultimate-gaming-client-lib PUBLIC ${SDL2_LIBRARIES})
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC OS_DARWIN)
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC GAMECONTROLLERDB_PLATFORM="Mac OS X")
     elseif (OS_LINUX)
         set(FEATURE_EMBEDDED_SHELL ON)
-        target_compile_definitions(moonlight-lib PUBLIC OS_LINUX _GNU_SOURCE)
-        target_compile_definitions(moonlight-lib PUBLIC GAMECONTROLLERDB_PLATFORM="Linux")
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC OS_LINUX _GNU_SOURCE)
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC GAMECONTROLLERDB_PLATFORM="Linux")
     elseif (OS_WINDOWS)
-        target_compile_definitions(moonlight-lib PUBLIC OS_WINDOWS)
-        target_compile_definitions(moonlight-lib PUBLIC GAMECONTROLLERDB_PLATFORM="Windows")
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC OS_WINDOWS)
+        target_compile_definitions(ultimate-gaming-client-lib PUBLIC GAMECONTROLLERDB_PLATFORM="Windows")
     else ()
         message(FATAL_ERROR "Unknown build platform")
     endif ()
 
-    set_target_properties(moonlight PROPERTIES OUTPUT_NAME moonlight-tv)
+    set_target_properties(ultimate_gaming_client PROPERTIES OUTPUT_NAME ultimate-gaming-client)
 endif ()
 
 if (FEATURE_INPUT_LIBCEC AND TARGET commons-cec-sdl)
-    target_link_libraries(moonlight-lib PUBLIC commons-cec-sdl)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-cec-sdl)
 else ()
     set(FEATURE_INPUT_LIBCEC OFF)
 endif ()
 
 if (FEATURE_INPUT_EVMOUSE AND TARGET commons-evmouse)
-    target_link_libraries(moonlight-lib PUBLIC commons-evmouse)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-evmouse)
 else ()
     set(FEATURE_INPUT_EVMOUSE OFF)
 endif ()
 
 if (FEATURE_GAMEPAD_TOUCHPAD_GRAB AND TARGET commons-gamepad-touchpad)
-    target_link_libraries(moonlight-lib PUBLIC commons-gamepad-touchpad)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-gamepad-touchpad)
 else ()
     set(FEATURE_GAMEPAD_TOUCHPAD_GRAB OFF)
 endif ()
 
-target_link_libraries(moonlight-lib PUBLIC commons-ss4s-modules-list commons-sps-parser)
+target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-ss4s-modules-list commons-sps-parser)
 
-target_link_libraries(moonlight-lib PUBLIC commons-logging commons-gamecontrollerdb-updater commons-lazy
+target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-logging commons-gamecontrollerdb-updater commons-lazy
         commons-refcounter commons-executor commons-linked-list commons-wol commons-ini-writer commons-copyfile
         commons-sockaddr commons-hostport)
 
 configure_file(src/app/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
-target_include_directories(moonlight-lib PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
+target_include_directories(ultimate-gaming-client-lib PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 
 if (OS_WINDOWS)
-    target_link_libraries(moonlight-lib PUBLIC rpcrt4)
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC rpcrt4)
 else ()
     pkg_check_modules(UUID REQUIRED uuid)
-    target_link_libraries(moonlight-lib PUBLIC ${UUID_LIBRARIES})
+    target_link_libraries(ultimate-gaming-client-lib PUBLIC ${UUID_LIBRARIES})
 endif ()
 
 if (WITH_SANITIZE)
-    target_compile_options(moonlight-lib PUBLIC -fsanitize=${WITH_SANITIZE} -g3 -O0)
-    target_link_options(moonlight-lib PUBLIC -fsanitize=${WITH_SANITIZE} -static-libasan -lrt)
+    target_compile_options(ultimate-gaming-client-lib PUBLIC -fsanitize=${WITH_SANITIZE} -g3 -O0)
+    target_link_options(ultimate-gaming-client-lib PUBLIC -fsanitize=${WITH_SANITIZE} -static-libasan -lrt)
 endif ()
 
 add_subdirectory(src)
@@ -362,7 +362,7 @@ add_subdirectory(src)
 if (NOT DEFINED CMAKE_INSTALL_BINDIR)
     set(CMAKE_INSTALL_BINDIR bin)
 endif ()
-install(TARGETS moonlight RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(TARGETS ultimate_gaming_client RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if (BUILD_TESTS)
     add_subdirectory(third_party/Unity EXCLUDE_FROM_ALL)
@@ -370,7 +370,7 @@ if (BUILD_TESTS)
 endif ()
 
 if (FEATURE_I18N_GETTEXT)
-    include(MoonlightI18n)
+    include(AppI18n)
 endif ()
 
 if (TARGET_WEBOS)

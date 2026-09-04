@@ -9,7 +9,7 @@
 #include "util/user_event.h"
 #include "util/font.h"
 #include "util/i18n.h"
-#include "lvgl/theme/lv_theme_moonlight.h"
+#include "lvgl/theme/lv_theme_ugc.h"
 
 typedef struct {
     const char *icon;
@@ -99,7 +99,7 @@ static void on_view_created(lv_fragment_t *self, lv_obj_t *view) {
         app_input_set_group(&controller->app->ui.input, controller->nav_group);
 
         lv_obj_t *btns = lv_tabview_get_tab_btns(controller->tabview);
-        lv_obj_set_style_text_font(btns, lv_theme_moonlight_get_iconfont_large(btns), 0);
+        lv_obj_set_style_text_font(btns, lv_theme_ugc_get_iconfont_large(btns), 0);
         lv_group_remove_obj(btns);
 
         lv_group_add_obj(controller->nav_group, controller->nav);
@@ -141,7 +141,7 @@ static void on_view_created(lv_fragment_t *self, lv_obj_t *view) {
         for (int i = 0; i < entries_len; ++i) {
             settings_entry_t entry = entries[i];
             lv_obj_t *item_view = lv_list_add_btn(controller->nav, entry.icon, locstr(entry.name));
-            lv_btn_set_icon_font(item_view, lv_theme_moonlight_get_iconfont_normal(item_view));
+            lv_btn_set_icon_font(item_view, lv_theme_ugc_get_iconfont_normal(item_view));
 
             lv_obj_set_style_bg_opa(item_view, LV_OPA_COVER, LV_STATE_FOCUS_KEY);
             lv_obj_add_flag(item_view, LV_OBJ_FLAG_EVENT_BUBBLE);

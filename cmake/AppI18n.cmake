@@ -10,14 +10,14 @@ foreach (LANG ${I18N_LOCALES})
     string(REPLACE "-" "_" _MOLANG ${LANG})
     set(_POFILE ${CMAKE_SOURCE_DIR}/src/i18n/${LANG}/messages.po)
     set(_MODIR ${CMAKE_BINARY_DIR}/mo/${_MOLANG}/LC_MESSAGES)
-    set(_MOFILE ${_MODIR}/moonlight-tv.mo)
+    set(_MOFILE ${_MODIR}/ultimate-gaming-client.mo)
     add_custom_command(OUTPUT ${_MOFILE} DEPENDS src/i18n/${LANG}/messages.po
             COMMAND ${CMAKE_COMMAND} -E make_directory ${_MODIR}
             COMMAND ${MSGFMT_COMMAND} --output-file=${_MOFILE} ${_POFILE})
     list(APPEND MOFILES ${_MOFILE})
 endforeach ()
-add_custom_target(moonlight-i18n ALL DEPENDS ${MOFILES})
-add_dependencies(moonlight moonlight-i18n)
+add_custom_target(ultimate-gaming-client-i18n ALL DEPENDS ${MOFILES})
+add_dependencies(ultimate_gaming_client ultimate-gaming-client-i18n)
 
 file(GLOB_RECURSE I18N_SOURCES LIST_DIRECTORIES FALSE RELATIVE ${CMAKE_SOURCE_DIR} "src/*.c" "src/*.h")
 add_custom_target(i18n-update-pot

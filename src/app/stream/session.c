@@ -329,7 +329,7 @@ void session_config_init(app_t *app, session_config_t *config, const SERVER_DATA
  * Corresponds to @p avcodec_colorspace_from_sunshine_colorspace in video_colorspace.cpp in Sunshine.
  *
  * @param info Info for SS4S_PlayerVideoSetHDRInfo
- * @param config Moonlight stream configuration
+ * @param config Stream configuration
  */
 static void populate_hdr_info_vui(SS4S_VideoHDRInfo *info, const STREAM_CONFIGURATION *config) {
     switch (config->colorSpace) {

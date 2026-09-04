@@ -1,4 +1,4 @@
-target_sources(moonlight-lib PRIVATE
+target_sources(ultimate-gaming-client-lib PRIVATE
         backend_root.c
         backend_gs.c
         pcmanager/pcmanager.c

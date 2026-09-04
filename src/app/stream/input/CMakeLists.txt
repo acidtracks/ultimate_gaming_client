@@ -1,4 +1,4 @@
-target_sources(moonlight-lib PRIVATE
+target_sources(ultimate-gaming-client-lib PRIVATE
         session_input.c
         session_keyboard.c
         session_gamepad.c
@@ -6,5 +6,5 @@ target_sources(moonlight-lib PRIVATE
         session_touch.c
         session_virt_mouse.c)
 if (FEATURE_INPUT_EVMOUSE)
-    target_sources(moonlight-lib PRIVATE session_evmouse.c)
+    target_sources(ultimate-gaming-client-lib PRIVATE session_evmouse.c)
 endif ()

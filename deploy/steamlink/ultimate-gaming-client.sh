@@ -9,13 +9,13 @@ cd "$APPDIR" || exit 1
 # Renice PE_Single_CPU which seems to host A/V stuff
 renice -10 -p $(pidof PE_Single_CPU)
 
-export HOME=/usr/local/moonlight
+export HOME=/usr/local/ultimate-gaming-client
 export LD_LIBRARY_PATH="$APPDIR/lib:$LD_LIBRARY_PATH"
 
-# Renice Moonlight itself to avoid preemption by background tasks
+# Renice the app itself to avoid preemption by background tasks
 # Write output to a logfile in /tmp
 if [ -t 1 ]; then
-  exec nice -n -10 ./bin/moonlight-tv
+  exec nice -n -10 ./bin/ultimate-gaming-client
 else
-  exec nice -n -10 ./bin/moonlight-tv >/tmp/moonlight-tv.log 2>&1
+  exec nice -n -10 ./bin/ultimate-gaming-client >/tmp/ultimate-gaming-client.log 2>&1
 fi

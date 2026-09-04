@@ -1,5 +1,5 @@
-target_sources(moonlight-lib PRIVATE app.c app_launch.c app_error.c app_session.c app_settings.c)
-target_include_directories(moonlight-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_sources(ultimate-gaming-client-lib PRIVATE app.c app_launch.c app_error.c app_session.c app_settings.c)
+target_include_directories(ultimate-gaming-client-lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_subdirectory(input)
 add_subdirectory(stream)

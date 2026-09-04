@@ -1,1 +1,1 @@
-target_sources(moonlight-lib PRIVATE session_video.c)
+target_sources(ultimate-gaming-client-lib PRIVATE session_video.c)
