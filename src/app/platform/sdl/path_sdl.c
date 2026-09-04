@@ -9,7 +9,7 @@ char *path_assets() {
 }
 
 char *path_pref(bool *persistent) {
-    char *path = SDL_GetPrefPath("com.limelight", "ultimate-gaming-client");
+    char *path = SDL_GetPrefPath("com.ultimate", "ultimate-gaming-client");
     unsigned int len = SDL_strlen(path);
     if (len && path[len - 1] == PATH_SEPARATOR) {
         path[len - 1] = '\0';
