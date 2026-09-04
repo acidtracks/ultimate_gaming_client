@@ -303,7 +303,7 @@ SDL_Window *app_ui_create_window(app_ui_t *ui) {
         win_width = app_configuration->window_state.w;
         win_height = app_configuration->window_state.h;
     }
-    SDL_Window *win = SDL_CreateWindow("Moonlight", win_x, win_y, win_width, win_height, win_flags);
+    SDL_Window *win = SDL_CreateWindow("Ultimate Gaming Client", win_x, win_y, win_width, win_height, win_flags);
     if (win == NULL) {
 #ifdef TARGET_WEBOS
         // For webOS 24 (9.0), unpopulated jailer config could cause graphics driver initialization failure

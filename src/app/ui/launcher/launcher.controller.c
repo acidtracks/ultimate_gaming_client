@@ -471,7 +471,7 @@ static void show_decoder_error() {
 #if FEATURE_EMBEDDED_SHELL
     lv_label_set_text_static(msgview, locstr("Streaming can't work without a valid decoder.\n"
                                              "(If your device supports moonlight-embedded, install it "
-                                             "and Moonlight will use it automatically.)"));
+                                             "and Ultimate Gaming Client will use it automatically.)"));
 #else
     lv_label_set_text_static(msgview, locstr("Streaming can't work without a valid decoder."));
 #endif

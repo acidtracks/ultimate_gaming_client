@@ -90,7 +90,7 @@ lv_obj_t *launcher_win_create(lv_fragment_t *self, lv_obj_t *parent) {
     lv_obj_t *title_label = lv_label_create(title);
     lv_obj_set_style_pad_hor(title_label, 0, 0);
     lv_obj_set_style_text_font(title_label, lv_theme_get_font_large(title), 0);
-    lv_label_set_text_static(title_label, "Moonlight");
+    lv_label_set_text_static(title_label, "Ultimate Gaming Client");
     lv_obj_get_style_flex_grow(title_label, 1);
 
     lv_obj_t *pclist = lv_list_create(nav);

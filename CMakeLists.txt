@@ -7,7 +7,7 @@ if (MOONLIGHT_VERSION)
     string(STRIP "${MOONLIGHT_VERSION}" MOONLIGHT_VERSION)
     string(SUBSTRING "${MOONLIGHT_VERSION}" 1 -1 MOONLIGHT_VERSION)
 else ()
-    execute_process(COMMAND curl -s "https://api.github.com/repos/mariotaku/moonlight-tv/releases/latest"
+    execute_process(COMMAND curl -s "https://api.github.com/repos/acidtracks/ultimate_gaming_client/releases/latest"
             OUTPUT_VARIABLE MOONLIGHT_LATEST_RELEASE ERROR_QUIET)
     string(JSON MOONLIGHT_VERSION GET "${MOONLIGHT_LATEST_RELEASE}" "tag_name")
     if (MOONLIGHT_VERSION)
@@ -100,7 +100,7 @@ if (TARGET_WEBOS)
     set(THREADS_PTHREAD_ARG "2" CACHE STRING "Result from TRY_RUN" FORCE)
     set(OS_LINUX TRUE)
 
-    set(WEBOS_APPINFO_ID "com.limelight.webos")
+    set(WEBOS_APPINFO_ID "com.ultimate.gamingclient")
     set(CMAKE_INSTALL_RPATH "$ORIGIN/lib/backports:$ORIGIN/../lib/backports:$ORIGIN")
 elseif (TARGET_STEAMLINK)
     set(OS_LINUX TRUE)

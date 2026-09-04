@@ -1,16 +1,16 @@
 {
     "id": "@WEBOS_APPINFO_ID@",
     "version": "@PROJECT_VERSION@",
-    "vendor": "Mariotaku Lee",
+    "vendor": "AcidTracks",
     "type": "native",
     "main": "bin/moonlight",
-    "title": "Moonlight",
+    "title": "Ultimate Gaming Client",
     "icon": "icon.png",
     "iconColor": "#ffffff",
     "largeIcon": "icon_large.png",
     "splashBackground": "splash.png",
-    "dialAppName": "Moonlight",
-    "appDescription": "Open Source NVIDIA GameStream Client",
+    "dialAppName": "Ultimate Gaming Client",
+    "appDescription": "Open Source PC Game Streaming Client",
     "supportTouchMode": "full",
     "useAllMouseButtons": true
 }

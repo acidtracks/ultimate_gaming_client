@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Moonlight TV
-Comment=Open Source NVIDIA GameStream Client
+Name=Ultimate Gaming Client
+Comment=Open Source PC Game Streaming Client
 Exec=moonlight-tv
 Icon=moonlight-tv
 Terminal=false

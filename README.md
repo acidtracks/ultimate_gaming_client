@@ -1,9 +1,13 @@
-# Moonlight TV
+# Ultimate Gaming Client
 
-Moonlight TV is a community version of [Moonlight GameStream Client](https://moonlight-stream.org/), made for large
-screens. It works on LG webOS powered TVs, and Raspberry Pi running Raspbian.
+Ultimate Gaming Client is a fork of [Moonlight TV](https://github.com/mariotaku/moonlight-tv) by mariotaku, itself a
+community version of [Moonlight GameStream Client](https://moonlight-stream.org/), made for large screens. It works
+on LG webOS powered TVs, and Raspberry Pi running Raspbian.
 
-![Download Stats](https://img.shields.io/github/downloads/mariotaku/moonlight-tv/total)
+This project is licensed under GPL-3.0, same as upstream. See [LICENSE.txt](LICENSE.txt) and the Credits section
+below for full attribution.
+
+![Download Stats](https://img.shields.io/github/downloads/acidtracks/ultimate_gaming_client/total)
 
 ## Features
 
@@ -27,15 +31,17 @@ _Screenshot performed on TV has lower picture quality. Actual picture quality is
 
 [Easy installation with dev-manager-desktop](https://github.com/webosbrew/dev-manager-desktop) (recommended)
 
-Or download IPK from [Latest release](https://github.com/mariotaku/moonlight-tv/releases/latest)
+Or download IPK from [Latest release](https://github.com/acidtracks/ultimate_gaming_client/releases/latest)
 
 ### For Raspbian
 
-Download DEB from [Latest release](https://github.com/mariotaku/moonlight-tv/releases/latest)
+Download DEB from [Latest release](https://github.com/acidtracks/ultimate_gaming_client/releases/latest)
 
-## [Documentations](https://github.com/mariotaku/moonlight-tv/wiki)
+## [Documentations](https://github.com/acidtracks/ultimate_gaming_client/wiki)
 
 ## Credits
 
+* [Moonlight TV](https://github.com/mariotaku/moonlight-tv) by mariotaku, the direct upstream this project is forked
+  from
 * [moonlight-embedded](https://github.com/irtimmer/moonlight-embedded), for original libgamestream and decoder
   components
