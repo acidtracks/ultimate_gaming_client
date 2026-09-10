@@ -1,0 +1,644 @@
+<title>Play, Transmitted</title>
+<meta name="description" content="Proposition d'identité visuelle pour Ultimate Gaming Client, sur l'axe du streaming de jeu vidéo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+
+<style>
+  /* ---------------------------------------------------------------
+     PLAY, TRANSMITTED — identité UGC
+     Monde visuel unique et assumé : le noir OLED d'un panneau de
+     télémétrie de stream. Palette peinte explicitement, thème unique.
+  --------------------------------------------------------------- */
+  :root{
+    --ink:#05060a;
+    --panel:#0e1119;
+    --panel-2:#151b28;
+    --line:#232c3d;
+    --line-soft:#1a2130;
+    --text:#e8f1ee;
+    --muted:#8c98a2;
+    --muted-dim:#5c6672;
+    --signal:#4df3d0;
+    --signal-deep:#0f5f52;
+    --drop:#ff3d8a;
+    color-scheme:dark;
+
+    --measure:63ch;
+    --edge:clamp(1.25rem,5vw,3rem);
+    --bay:clamp(4rem,11vw,8.5rem);
+    --maxw:1180px;
+    --readw:920px;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:clamp(1rem,0.94rem + 0.3vw,1.12rem);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--signal);color:#04120e}
+
+  a{color:var(--signal);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--signal) 35%,transparent)}
+  a:hover{border-bottom-color:var(--signal)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--edge)}
+  .read{max-width:var(--readw);margin-inline:auto;padding-inline:var(--edge)}
+  .read p{max-width:var(--measure)}
+
+  /* ---- type ---- */
+  h1,h2,h3{font-family:"Chakra Petch","Chakra Petch",sans-serif;font-weight:700;text-wrap:balance;margin:0}
+  .display{
+    font-size:clamp(2.6rem,1.5rem + 5.4vw,5.1rem);
+    line-height:0.96;
+    letter-spacing:0.005em;
+    font-weight:700;
+  }
+  h2{
+    font-size:clamp(1.7rem,1.2rem + 2.2vw,2.6rem);
+    line-height:1.05;
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+  h3{
+    font-size:0.82rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--text);
+  }
+  .eyebrow{
+    font-family:"JetBrains Mono",ui-monospace,monospace;
+    font-size:0.72rem;
+    font-weight:500;
+    letter-spacing:0.26em;
+    text-transform:uppercase;
+    color:var(--signal);
+    display:flex;align-items:center;gap:0.7em;
+  }
+  .eyebrow::before{
+    content:"";width:1.6rem;height:1px;background:var(--signal);flex:none;
+  }
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .lede{font-size:clamp(1.12rem,1rem + 0.6vw,1.4rem);line-height:1.5;color:var(--text)}
+  .muted{color:var(--muted)}
+  small{font-size:0.82rem}
+
+  section{padding-block:var(--bay);border-top:1px solid var(--line-soft)}
+  section:first-of-type{border-top:0}
+
+  .sec-head{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:clamp(2rem,5vw,3.5rem)}
+  .sec-head .idx{
+    font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:0.22em;
+    color:var(--muted-dim);
+  }
+
+  /* ---- hero ---- */
+  .hero{
+    position:relative;overflow:hidden;
+    padding-block:clamp(3.5rem,9vw,6.5rem) var(--bay);
+    border-top:0;
+  }
+  .hero::before{ /* one flourish: spectral bloom behind the mark */
+    content:"";position:absolute;inset:-20% -10% auto;height:70%;
+    background:
+      radial-gradient(46% 60% at 32% 42%, color-mix(in srgb,#7b2ff7 40%,transparent), transparent 70%),
+      radial-gradient(40% 55% at 55% 55%, color-mix(in srgb,#ff1e88 26%,transparent), transparent 72%),
+      radial-gradient(38% 52% at 22% 60%, color-mix(in srgb,#19d3f0 30%,transparent), transparent 74%);
+    filter:blur(30px);opacity:0.5;pointer-events:none;z-index:0;
+  }
+  .hero > *{position:relative;z-index:1}
+  .hero-mark{display:block;width:clamp(160px,34vw,300px);height:auto;margin-bottom:clamp(1.6rem,4vw,2.6rem)}
+  .concept-tag{
+    font-family:"JetBrains Mono",monospace;font-size:0.78rem;letter-spacing:0.2em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:1.1rem;
+  }
+  .hero h1{margin-bottom:1.4rem}
+  .hero .lede{max-width:34ch}
+
+  /* telemetry strip */
+  .telemetry{
+    margin-top:clamp(2.2rem,5vw,3.4rem);
+    display:flex;flex-wrap:wrap;gap:0 clamp(1.4rem,4vw,2.8rem);
+    padding-top:1.2rem;border-top:1px solid var(--line);
+    font-family:"JetBrains Mono",monospace;
+  }
+  .telemetry div{display:flex;flex-direction:column;gap:0.15rem;padding-block:0.4rem}
+  .telemetry .k{font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted-dim)}
+  .telemetry .v{font-size:1.15rem;font-weight:500;color:var(--text);font-variant-numeric:tabular-nums}
+  .telemetry .v.ok{color:var(--signal)}
+  .link-dot{display:inline-flex;align-items:center;gap:0.5em;color:var(--signal);font-size:0.64rem;letter-spacing:0.2em;text-transform:uppercase}
+  .link-dot i{width:7px;height:7px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 0 color-mix(in srgb,var(--signal) 70%,transparent)}
+
+  /* ---- generic blocks ---- */
+  .grid-2{display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,4vw,2.5rem)}
+  @media(min-width:760px){.grid-2{grid-template-columns:1fr 1fr}}
+
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(1.3rem,3.5vw,2rem)}
+  .panel.tight{padding:clamp(1rem,3vw,1.4rem)}
+
+  .pull{
+    font-family:"Chakra Petch",sans-serif;font-weight:500;
+    font-size:clamp(1.35rem,1rem + 1.8vw,2.1rem);line-height:1.25;
+    color:var(--text);border-left:2px solid var(--signal);
+    padding-left:clamp(1rem,3vw,1.6rem);margin:clamp(2rem,5vw,3rem) 0;
+    max-width:26ch;
+  }
+  .pull b{color:var(--signal);font-weight:500}
+
+  ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.85rem}
+  ul.plain li{padding-left:1.4rem;position:relative;color:var(--muted)}
+  ul.plain li::before{content:"";position:absolute;left:0;top:0.62em;width:8px;height:2px;background:var(--signal)}
+  ul.plain li b{color:var(--text);font-weight:600}
+
+  /* ---- symbol / construction ---- */
+  .mark-show{
+    display:grid;grid-template-columns:1fr;gap:clamp(1.5rem,4vw,2.4rem);align-items:center;
+  }
+  @media(min-width:820px){.mark-show{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
+  .mark-stage{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:clamp(2rem,6vw,3.4rem);display:flex;justify-content:center;align-items:center;
+    position:relative;
+  }
+  .mark-stage::after{
+    content:"CONSTRUCTION";position:absolute;top:0.9rem;left:1rem;
+    font-family:"JetBrains Mono",monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--muted-dim);
+  }
+  .mark-stage svg{width:min(78%,320px);height:auto;overflow:visible}
+  .cx line{stroke:var(--drop);stroke-width:1;stroke-dasharray:4 4;opacity:0.5}
+  .cx text{fill:var(--muted-dim);font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:0.08em}
+
+  .sizes{display:flex;align-items:flex-end;gap:clamp(1rem,4vw,2.2rem);flex-wrap:wrap;margin-top:1.6rem}
+  .sizes figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:0.6rem}
+  .sizes .tile{border-radius:22%;overflow:hidden;display:grid;place-items:center;background:var(--panel-2);border:1px solid var(--line)}
+  .sizes .tile svg{width:64%;height:64%}
+  .sizes figcaption{font-family:"JetBrains Mono",monospace;font-size:0.66rem;letter-spacing:0.12em;color:var(--muted-dim)}
+
+  /* ---- logotype ---- */
+  .lockups{display:grid;grid-template-columns:1fr;gap:clamp(1.2rem,3vw,1.6rem)}
+  @media(min-width:720px){.lockups{grid-template-columns:1.4fr 1fr}}
+  .lock{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(1.6rem,4vw,2.4rem);display:flex;align-items:center;gap:clamp(1rem,3vw,1.6rem)}
+  .lock svg{flex:none;width:clamp(56px,12vw,84px);height:auto}
+  .wordmark{
+    font-family:"Chakra Petch",sans-serif;font-weight:700;
+    text-transform:uppercase;letter-spacing:0.12em;line-height:0.98;
+    font-size:clamp(1.15rem,0.8rem + 1.5vw,1.7rem);color:var(--text);
+  }
+  .wordmark span{display:block}
+  .wordmark span:last-child{color:var(--signal)}
+  .monogram{
+    font-family:"Chakra Petch",sans-serif;font-weight:700;letter-spacing:0.04em;
+    font-size:clamp(2.4rem,2rem + 3vw,3.6rem);color:var(--text);display:flex;align-items:baseline;gap:0.1em;
+  }
+  .monogram i{color:var(--signal);font-style:normal}
+
+  /* ---- colour ---- */
+  .swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  @media(min-width:680px){.swatches{grid-template-columns:repeat(4,1fr)}}
+  .sw{background:var(--panel);padding:1.1rem 1.1rem 1rem;display:flex;flex-direction:column;gap:0.55rem;min-height:150px}
+  .sw .chip{width:100%;height:46px;border-radius:8px;border:1px solid rgba(255,255,255,0.06)}
+  .sw .name{font-family:"JetBrains Mono",monospace;font-size:0.74rem;color:var(--text);letter-spacing:0.04em}
+  .sw .hex{font-family:"JetBrains Mono",monospace;font-size:0.68rem;color:var(--muted-dim)}
+  .sw .role{font-size:0.78rem;color:var(--muted);line-height:1.4;margin-top:auto}
+  .sw .role b{color:var(--text);font-weight:600}
+  .sw.wide{grid-column:1/-1}
+  @media(min-width:680px){.sw.wide{grid-column:auto}}
+
+  .legend{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;margin-top:1.6rem;font-family:"JetBrains Mono",monospace;font-size:0.78rem}
+  .legend span{display:flex;align-items:center;gap:0.6em;color:var(--muted)}
+  .legend span i{width:10px;height:10px;border-radius:50%}
+
+  /* ---- type specimen ---- */
+  .face{border:1px solid var(--line);border-radius:14px;padding:clamp(1.4rem,4vw,2rem);background:var(--panel);display:flex;flex-direction:column;gap:1rem}
+  .face + .face{margin-top:1rem}
+  .face .meta{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0.5rem 1rem;align-items:baseline}
+  .face .fname{font-family:"Chakra Petch",sans-serif;font-weight:600;font-size:1.15rem;letter-spacing:0.03em}
+  .face .frole{font-family:"JetBrains Mono",monospace;font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--signal)}
+  .spec-a{font-family:"Chakra Petch",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;font-size:clamp(1.5rem,1rem + 3vw,2.6rem);line-height:1;color:var(--text)}
+  .spec-b{font-family:"Inter",sans-serif;font-size:1.05rem;line-height:1.6;color:var(--muted);max-width:58ch}
+  .spec-c{font-family:"JetBrains Mono",monospace;font-size:0.95rem;color:var(--text);letter-spacing:0.02em}
+  .spec-c b{color:var(--signal);font-weight:500}
+  .glyphline{font-family:inherit;color:var(--muted-dim);font-size:0.9rem;letter-spacing:0.1em}
+
+  /* ---- applications ---- */
+  .apps{display:flex;flex-direction:column;gap:clamp(1.6rem,4vw,2.4rem)}
+  .app{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .app .cap{padding:0.9rem 1.2rem;border-top:1px solid var(--line);display:flex;gap:0.8rem;align-items:baseline;flex-wrap:wrap}
+  .app .cap b{font-family:"JetBrains Mono",monospace;font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--signal);font-weight:500}
+  .app .cap span{color:var(--muted);font-size:0.9rem}
+  .stage{padding:clamp(1.6rem,5vw,3rem);display:flex;justify-content:center;background:
+    radial-gradient(60% 100% at 50% 0%, #0b0e16, var(--ink));}
+
+  /* TV home row */
+  .homerow{display:flex;gap:clamp(0.5rem,2vw,1rem);align-items:center;width:100%;max-width:640px;overflow:hidden}
+  .homerow .t{flex:1;aspect-ratio:1;border-radius:16px;background:var(--panel-2);border:1px solid var(--line);display:grid;place-items:center;color:var(--muted-dim);font-family:"JetBrains Mono",monospace;font-size:0.7rem}
+  .homerow .t.ugc{
+    flex:1.35;border:0;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#19d3f0,#7b2ff7 52%,#ff1e88);
+    outline:2px solid var(--signal);outline-offset:4px;
+  }
+  .homerow .t.ugc svg{width:58%;height:58%;position:absolute;inset:0;margin:auto;color:#fff}
+
+  /* splash 16:9 */
+  .splash{width:100%;max-width:720px;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);background:radial-gradient(50% 60% at 50% 42%,#161a26,var(--ink));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1.5rem}
+  .splash svg{width:clamp(60px,16vw,110px);height:auto}
+  .splash .wm{font-family:"Chakra Petch",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.22em;font-size:clamp(0.7rem,0.4rem + 1vw,1rem);color:var(--text);text-align:center}
+  .splash .st{font-family:"JetBrains Mono",monospace;font-size:0.66rem;letter-spacing:0.14em;color:var(--muted);display:flex;align-items:center;gap:0.6em}
+  .splash .st i{width:6px;height:6px;border-radius:50%;background:var(--signal)}
+
+  /* feature graphic */
+  .feature{width:100%;max-width:860px;aspect-ratio:1024/440;border-radius:12px;border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(120deg,#0a0d14 0%,#0a0d14 52%,#12101d 100%);display:flex;align-items:center;padding:clamp(1.2rem,5vw,3rem)}
+  .feature::after{content:"";position:absolute;right:-8%;top:-30%;width:52%;height:160%;background:radial-gradient(closest-side,color-mix(in srgb,#7b2ff7 45%,transparent),transparent);filter:blur(20px)}
+  .feature .fg{position:relative;z-index:1;display:flex;flex-direction:column;gap:0.9rem;max-width:60%}
+  .feature .fg .row{display:flex;align-items:center;gap:0.9rem}
+  .feature .fg svg{width:clamp(40px,8vw,64px);height:auto}
+  .feature .fg .fwm{font-family:"Chakra Petch",sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;font-size:clamp(0.85rem,0.5rem + 1.4vw,1.5rem);line-height:1}
+  .feature .fg .tag{font-family:"Inter",sans-serif;color:var(--muted);font-size:clamp(0.8rem,0.6rem + 0.6vw,1.05rem);max-width:32ch}
+  .feature .fg .tag b{color:var(--signal);font-weight:600}
+
+  /* in-stream overlay */
+  .frame{width:100%;max-width:720px;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);position:relative;overflow:hidden;background:
+    linear-gradient(200deg,#1b2334,#0c1017 60%),
+    radial-gradient(40% 60% at 70% 30%,color-mix(in srgb,#7b2ff7 30%,transparent),transparent);}
+  .frame .scene{position:absolute;inset:0;background:
+    repeating-linear-gradient(115deg,transparent 0 22px,rgba(255,255,255,0.015) 22px 23px);}
+  .osd{
+    position:absolute;top:0.9rem;left:0.9rem;background:rgba(5,7,12,0.72);
+    border:1px solid var(--line);border-radius:8px;padding:0.7rem 0.9rem;
+    font-family:"JetBrains Mono",monospace;font-size:0.72rem;line-height:1.7;
+    backdrop-filter:blur(3px);min-width:172px;
+  }
+  .osd .hdr{color:var(--signal);letter-spacing:0.16em;font-size:0.62rem;display:flex;align-items:center;gap:0.5em;margin-bottom:0.35rem}
+  .osd .hdr i{width:6px;height:6px;border-radius:50%;background:var(--signal)}
+  .osd .r{display:flex;justify-content:space-between;gap:1.2rem;color:var(--muted)}
+  .osd .r b{color:var(--text);font-weight:500;font-variant-numeric:tabular-nums}
+  .osd .r.good b{color:var(--signal)}
+  .osd .spark{display:flex;align-items:flex-end;gap:2px;height:20px;margin-top:0.5rem}
+  .osd .spark i{width:4px;background:var(--signal-deep);border-radius:1px}
+  .osd .spark i.hi{background:var(--signal)}
+
+  /* ---- closing ---- */
+  .next{display:grid;grid-template-columns:1fr;gap:1rem}
+  @media(min-width:720px){.next{grid-template-columns:1fr 1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:clamp(1.3rem,3.5vw,1.8rem)}
+  .card h3{margin-bottom:0.8rem}
+  .card p{margin:0;color:var(--muted);font-size:0.96rem}
+  .status{font-family:"JetBrains Mono",monospace;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--drop);display:inline-flex;align-items:center;gap:0.5em;margin-bottom:0.9rem}
+  .status i{width:7px;height:7px;border-radius:50%;background:var(--drop)}
+
+  footer{padding-block:var(--bay) clamp(2rem,6vw,4rem);border-top:1px solid var(--line-soft)}
+  footer p{color:var(--muted-dim);font-size:0.85rem;font-family:"JetBrains Mono",monospace;letter-spacing:0.06em;max-width:60ch}
+
+  /* ---- motion ---- */
+  @media(prefers-reduced-motion:no-preference){
+    .hero-mark .bar{animation:eq 2.4s ease-in-out infinite}
+    .hero-mark .bar.b2{animation-delay:0.25s}
+    .hero-mark .bar.b3{animation-delay:0.5s}
+    @keyframes eq{
+      0%,100%{transform:scaleY(0.62)}
+      45%{transform:scaleY(1)}
+      70%{transform:scaleY(0.8)}
+    }
+    .link-dot i{animation:ping 2.6s ease-out infinite}
+    @keyframes ping{
+      0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--signal) 60%,transparent)}
+      70%,100%{box-shadow:0 0 0 9px transparent}
+    }
+    .telemetry .v.tick{animation:flick 4s steps(1) infinite}
+    @keyframes flick{0%,92%{opacity:1}93%{opacity:0.55}94%,100%{opacity:1}}
+  }
+  .hero-mark .bar{transform-origin:center bottom}
+</style>
+
+<!-- shared symbols ------------------------------------------------ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="spectral" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#19d3f0"/>
+      <stop offset="0.52" stop-color="#7b2ff7"/>
+      <stop offset="1" stop-color="#ff1e88"/>
+    </linearGradient>
+  </defs>
+  <symbol id="ugc-mark" viewBox="0 0 470 512">
+    <path d="M150 146 L150 366 L318 256 Z" fill="url(#spectral)"/>
+    <rect x="344" y="220" width="26" height="72"  rx="8" fill="url(#spectral)"/>
+    <rect x="386" y="188" width="26" height="136" rx="8" fill="url(#spectral)"/>
+    <rect x="428" y="156" width="26" height="200" rx="8" fill="url(#spectral)"/>
+  </symbol>
+  <symbol id="ugc-mark-solid" viewBox="0 0 470 512">
+    <path d="M150 146 L150 366 L318 256 Z" fill="currentColor"/>
+    <rect x="344" y="220" width="26" height="72"  rx="8" fill="currentColor"/>
+    <rect x="386" y="188" width="26" height="136" rx="8" fill="currentColor"/>
+    <rect x="428" y="156" width="26" height="200" rx="8" fill="currentColor"/>
+  </symbol>
+</svg>
+
+<!-- HERO --------------------------------------------------------- -->
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Proposition d'identité · Ultimate Gaming Client</p>
+
+    <svg class="hero-mark" viewBox="0 0 470 512" role="img" aria-label="Symbole Ultimate Gaming Client : un triangle de lecture suivi de trois barres de signal montantes.">
+      <path d="M150 146 L150 366 L318 256 Z" fill="url(#spectral)"/>
+      <rect class="bar b1" x="344" y="220" width="26" height="72"  rx="8" fill="url(#spectral)"/>
+      <rect class="bar b2" x="386" y="188" width="26" height="136" rx="8" fill="url(#spectral)"/>
+      <rect class="bar b3" x="428" y="156" width="26" height="200" rx="8" fill="url(#spectral)"/>
+    </svg>
+
+    <p class="concept-tag">Concept — « Play, transmitted »</p>
+    <h1 class="display">Chaque image<br>de ta machine,<br>jusqu'au canapé.</h1>
+    <p class="lede">Une identité qui traite l'app comme un <strong>instrument</strong> : la lecture, plus l'état du lien. Ta bécane, tes jeux, zéro image perdue.</p>
+
+    <div class="telemetry" aria-label="Bandeau de télémétrie du stream">
+      <div><span class="link-dot"><i></i>Lié · 192.168.1.187</span></div>
+      <div><span class="k">Latence</span><span class="v ok tick">4 ms</span></div>
+      <div><span class="k">Images/s</span><span class="v tick">59.94</span></div>
+      <div><span class="k">Débit</span><span class="v tick">41.2 Mb/s</span></div>
+      <div><span class="k">Perte</span><span class="v ok">0.00 %</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- 01 · L'AXE -------------------------------------------------- -->
+<section>
+  <div class="read">
+    <div class="sec-head">
+      <span class="idx">01 / 07</span>
+      <p class="eyebrow">L'axe</p>
+      <h2>Pas le cloud. Ta machine.</h2>
+    </div>
+    <p>Ultimate Gaming Client stream les jeux depuis <em>ton</em> PC — ta carte graphique, ta bibliothèque, ton réseau local — vers ta TV LG. C'est l'opposé exact d'un service cloud comme GeForce NOW : rien ne transite par les serveurs de quelqu'un d'autre, la seule distance c'est celle du salon.</p>
+    <p>Cet écart est la marque. Un service cloud vend un abonnement et une promesse ; nous, on vend la <strong>fidélité d'une liaison</strong>. Ce que l'utilisateur avancé regarde vraiment, c'est l'overlay de stats : latence estimée, cadence réelle, débit, perte de paquets. L'identité vit dans ce vocabulaire — celui d'un panneau de contrôle, pas d'une pub.</p>
+
+    <blockquote class="pull">Le symbole doit dire deux choses d'un coup : <b>on lit un jeu</b>, et <b>le lien est bon</b>.</blockquote>
+
+    <p>Trois qualités à porter, dans cet ordre :</p>
+    <ul class="plain">
+      <li><b>Rapide</b> — faible latence, réactivité. Des formes nettes, tranchantes, orientées vers l'avant.</li>
+      <li><b>Fidèle</b> — chaque image arrive. Une palette de télémétrie : vert-signal quand ça tient, magenta quand ça lâche.</li>
+      <li><b>À toi</b> — pas corporate, pas cloud. Noir OLED, typo d'équipement, ton direct.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 02 · LE SYMBOLE ------------------------------------------- -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">02 / 07</span>
+      <p class="eyebrow">Le symbole</p>
+      <h2>La lecture, plus le signal.</h2>
+    </div>
+
+    <div class="mark-show">
+      <div class="mark-stage">
+        <svg viewBox="0 0 470 512" role="img" aria-label="Construction du symbole avec repères.">
+          <path d="M150 146 L150 366 L318 256 Z" fill="url(#spectral)"/>
+          <rect x="344" y="220" width="26" height="72"  rx="8" fill="url(#spectral)"/>
+          <rect x="386" y="188" width="26" height="136" rx="8" fill="url(#spectral)"/>
+          <rect x="428" y="156" width="26" height="200" rx="8" fill="url(#spectral)"/>
+          <g class="cx">
+            <line x1="150" y1="256" x2="454" y2="256"/>
+            <line x1="150" y1="90" x2="150" y2="422"/>
+            <text x="150" y="452" text-anchor="middle">▷ lecture</text>
+            <text x="399" y="452" text-anchor="middle">signal ↑</text>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <p>Un triangle de lecture — universel, « joue » — suivi de <strong>trois barres montantes</strong> : la jauge du lien, la force du signal, la montée en débit. Ensemble : « ça joue, et ça passe bien ».</p>
+        <p class="muted" style="margin-top:0.8rem">Le dégradé <span class="mono">spectral</span> (cyan → violet → magenta) n'apparaît <em>que</em> dans le symbole : il représente le spectre du signal vidéo à plein débit. Partout ailleurs, l'interface reste sobre.</p>
+
+        <div class="sizes">
+          <figure><span class="tile" style="width:104px;height:104px"><svg viewBox="0 0 470 512" style="color:#fff"><use href="#ugc-mark-solid"/></svg></span><figcaption>128 px</figcaption></figure>
+          <figure><span class="tile" style="width:64px;height:64px"><svg viewBox="0 0 470 512" style="color:#fff"><use href="#ugc-mark-solid"/></svg></span><figcaption>64 px</figcaption></figure>
+          <figure><span class="tile" style="width:34px;height:34px"><svg viewBox="120 96 260 320" style="color:#fff"><path d="M150 146 L150 366 L318 256 Z" fill="currentColor"/></svg></span><figcaption>≤ 32 px</figcaption></figure>
+        </div>
+        <p class="muted" style="margin-top:1rem"><small>Sous 32 px, les barres fusionnent : le symbole se réduit alors au triangle plein seul. Dégradation prévue, pas subie.</small></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · LE LOGOTYPE ---------------------------------------- -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">03 / 07</span>
+      <p class="eyebrow">Le logotype</p>
+      <h2>Chakra Petch, capitales, chanfreiné.</h2>
+    </div>
+    <p class="read" style="padding-inline:0;margin-bottom:2rem">Le nom est long : il se pose en pavé, jamais sur une ligne. Les angles coupés de Chakra Petch rappellent les macroblocs d'une image compressée et les panneaux biseautés d'un HUD. Dernier mot en vert-signal.</p>
+
+    <div class="lockups">
+      <div class="lock">
+        <svg viewBox="0 0 470 512" aria-hidden="true"><use href="#ugc-mark"/></svg>
+        <div class="wordmark"><span>Ultimate</span><span>Gaming</span><span>Client</span></div>
+      </div>
+      <div class="lock" style="justify-content:center">
+        <div class="monogram">UG<i>C</i></div>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:1rem"><small>Lockup principal pour splash / store. Monogramme <span class="mono">UGC</span> pour favicon, watermark d'overlay, et les contextes où le nom complet ne tient pas.</small></p>
+  </div>
+</section>
+
+<!-- 04 · LA COULEUR ---------------------------------------- -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">04 / 07</span>
+      <p class="eyebrow">La couleur</p>
+      <h2>Une palette d'overlay de stats.</h2>
+    </div>
+    <p class="read" style="padding-inline:0;margin-bottom:2rem">Le fond, c'est le noir d'une dalle OLED éteinte — le salon dans le noir, le pixel au repos. Deux accents seulement, et ils ont un <em>rôle</em>, comme dans un OSD : le vert-signal dit « ça tient », le magenta dit « ça lâche ».</p>
+
+    <div class="swatches">
+      <div class="sw">
+        <span class="chip" style="background:#05060a"></span>
+        <span class="name">--ink</span><span class="hex">#05060A</span>
+        <span class="role"><b>Fond.</b> Noir OLED. Le pixel éteint.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:#0e1119"></span>
+        <span class="name">--panel</span><span class="hex">#0E1119</span>
+        <span class="role"><b>Surface.</b> Panneaux, cartes, l'OSD.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:#232c3d"></span>
+        <span class="name">--line</span><span class="hex">#232C3D</span>
+        <span class="role"><b>Filets.</b> Grille, séparateurs. Gris biaisé cyan.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:#8c98a2"></span>
+        <span class="name">--muted</span><span class="hex">#8C98A2</span>
+        <span class="role"><b>Texte secondaire.</b> Légendes, unités.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:#4df3d0;border-color:transparent"></span>
+        <span class="name">--signal</span><span class="hex">#4DF3D0</span>
+        <span class="role"><b>Lié / bon.</b> Accent principal. Faible latence, verrouillage.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:#ff3d8a;border-color:transparent"></span>
+        <span class="name">--drop</span><span class="hex">#FF3D8A</span>
+        <span class="role"><b>Perte.</b> Sémantique d'alerte + un seul moment de marque.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:#e8f1ee;border-color:transparent"></span>
+        <span class="name">--text</span><span class="hex">#E8F1EE</span>
+        <span class="role"><b>Texte.</b> Blanc cassé, pointe de cyan.</span>
+      </div>
+      <div class="sw">
+        <span class="chip" style="background:linear-gradient(120deg,#19d3f0,#7b2ff7,#ff1e88);border-color:transparent"></span>
+        <span class="name">spectral</span><span class="hex">#19D3F0 · #7B2FF7 · #FF1E88</span>
+        <span class="role"><b>Symbole uniquement.</b> Le spectre du signal, plein débit.</span>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:#4df3d0"></i>Signal verrouillé — latence, cadence, débit nominal</span>
+      <span><i style="background:#ff3d8a"></i>Image perdue — perte de paquets, décrochage</span>
+    </div>
+  </div>
+</section>
+
+<!-- 05 · LA TYPO ------------------------------------------- -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">05 / 07</span>
+      <p class="eyebrow">La typographie</p>
+      <h2>Trois rôles, trois voix.</h2>
+    </div>
+
+    <div class="face">
+      <div class="meta"><span class="fname">Chakra Petch</span><span class="frole">Display · logotype · titres</span></div>
+      <div class="spec-a">Play, transmitted</div>
+      <div class="glyphline">ABCDEFGHIJKLM · 0123456789 · coins coupés, allure d'équipement</div>
+    </div>
+    <div class="face">
+      <div class="meta"><span class="fname">Inter</span><span class="frole">Texte · UI 10 pieds</span></div>
+      <p class="spec-b">L'app est une interface de salon, lue à trois mètres. Inter est le choix honnête ici : sobre, lisible sur une TV, il laisse la personnalité au symbole et aux chiffres. Corps généreux, interlignage aéré.</p>
+    </div>
+    <div class="face">
+      <div class="meta"><span class="fname">JetBrains Mono</span><span class="frole">Data · télémétrie · overlay</span></div>
+      <div class="spec-c">LAT <b>4 ms</b> &nbsp; IPS <b>59.94</b> &nbsp; DÉBIT <b>41.2 Mb/s</b> &nbsp; PERTE <b>0.00 %</b></div>
+      <div class="glyphline">chiffres tabulaires · c'est là que vit la sensation d'instrument</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · EN USAGE ----------------------------------------- -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="idx">06 / 07</span>
+      <p class="eyebrow">En usage</p>
+      <h2>Là où ça compte.</h2>
+    </div>
+
+    <div class="apps">
+
+      <div class="app">
+        <div class="stage">
+          <div class="homerow" role="img" aria-label="Rangée d'accueil d'une TV avec l'icône Ultimate Gaming Client sélectionnée parmi d'autres apps.">
+            <span class="t">A</span>
+            <span class="t">B</span>
+            <span class="t ugc"><svg viewBox="0 0 470 512" aria-hidden="true"><use href="#ugc-mark-solid"/></svg></span>
+            <span class="t">D</span>
+            <span class="t">E</span>
+          </div>
+        </div>
+        <div class="cap"><b>Icône · webOS</b><span>Doit tenir à côté des géants du store, sur fond sombre, en état sélectionné. Triangle blanc plein sur pavé spectral.</span></div>
+      </div>
+
+      <div class="app">
+        <div class="stage">
+          <div class="splash" role="img" aria-label="Écran de démarrage : symbole, logotype, ligne d'état de connexion.">
+            <svg viewBox="0 0 470 512" aria-hidden="true"><use href="#ugc-mark"/></svg>
+            <div class="wm">Ultimate&nbsp;Gaming&nbsp;Client</div>
+            <div class="st"><i></i>Établissement du lien · 192.168.1.187</div>
+          </div>
+        </div>
+        <div class="cap"><b>Splash</b><span>Le moment d'attente devient une info : on établit le lien, pas « chargement… ».</span></div>
+      </div>
+
+      <div class="app">
+        <div class="stage">
+          <div class="feature" role="img" aria-label="Visuel de mise en avant pour le store : symbole, logotype, accroche.">
+            <div class="fg">
+              <div class="row">
+                <svg viewBox="0 0 470 512" aria-hidden="true"><use href="#ugc-mark"/></svg>
+                <span class="fwm">Ultimate<br>Gaming Client</span>
+              </div>
+              <p class="tag">Ta machine. Tes jeux. <b>Chaque image</b>, sur le grand écran.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Feature graphic · store</b><span>Accroche sur la fidélité, pas sur le catalogue — c'est ce qui nous distingue du cloud.</span></div>
+      </div>
+
+      <div class="app">
+        <div class="stage">
+          <div class="frame" role="img" aria-label="Overlay de statistiques en cours de stream, dans le système visuel.">
+            <div class="scene"></div>
+            <div class="osd">
+              <div class="hdr"><i></i>LIÉ</div>
+              <div class="r good"><span>LAT</span><b>4 ms</b></div>
+              <div class="r"><span>IPS</span><b>59.94</b></div>
+              <div class="r"><span>DÉBIT</span><b>41.2 Mb/s</b></div>
+              <div class="r good"><span>PERTE</span><b>0.00 %</b></div>
+              <div class="spark" aria-hidden="true">
+                <i style="height:40%"></i><i style="height:55%"></i><i class="hi" style="height:70%"></i><i style="height:45%"></i><i style="height:60%"></i><i class="hi" style="height:85%"></i><i style="height:50%"></i><i style="height:65%"></i><i style="height:42%"></i><i class="hi" style="height:72%"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap"><b>Overlay in-stream</b><span>Le cœur de la marque : l'OSD que l'utilisateur invoque en jeu, dessiné dans le système.</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 07 · SUITE ------------------------------------------- -->
+<section>
+  <div class="read">
+    <div class="sec-head">
+      <span class="idx">07 / 07</span>
+      <p class="eyebrow">Suite</p>
+      <h2>Ce qui est provisoire, ce qui suit.</h2>
+    </div>
+    <p class="status"><i></i>Concept — non figé</p>
+    <p>Le symbole ci-dessus est dessiné à la main en SVG : la <em>direction</em> est là, la finition vectorielle (optique des angles, ajustement des barres, jeu d'icônes UI assorti) demande une passe dédiée — un designer, ou un outil vecteur type Recraft / Illustrator + Firefly, avec cette page comme brief.</p>
+
+    <div class="next">
+      <div class="card">
+        <h3>Si la direction te va</h3>
+        <p>Je décline le symbole dans tous les emplacements d'assets du repo (9 PNG webOS/Linux/Steam Link + splash), régénère <span class="mono">app_icon.h</span>, rebuild desktop + webOS, commit + push. Icône provisoire mais cohérente, build débloqué.</p>
+      </div>
+      <div class="card">
+        <h3>Avant soumission store</h3>
+        <p>Passe finition de l'art (interne ou Recraft/Firefly, indemnisé commercialement), <span class="mono">webosbrew-ipk-verify</span>, test sur la TV. Le système couleur / typo / overlay, lui, est prêt à être appliqué à l'UI.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="read" style="padding-inline:0">
+    <p>Ultimate Gaming Client — fork de mariotaku/moonlight-tv (GPL-3.0). Symbole & système : proposition, itération 1. Dégradé spectral réservé au symbole. Chakra Petch / Inter / JetBrains Mono via Google Fonts.</p>
+  </div>
+</footer>
