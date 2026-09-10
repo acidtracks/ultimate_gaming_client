@@ -314,9 +314,13 @@ else ()
     else ()
         message(FATAL_ERROR "Unknown build platform")
     endif ()
-
-    set_target_properties(ultimate_gaming_client PROPERTIES OUTPUT_NAME ultimate-gaming-client)
 endif ()
+
+# Executable name is consistent across all targets. On webOS this must match
+# the "main" path in deploy/webos/appinfo.json (bin/ultimate-gaming-client);
+# upstream relied on the target name matching here, which no longer holds
+# after the rebrand renamed the target to ultimate_gaming_client.
+set_target_properties(ultimate_gaming_client PROPERTIES OUTPUT_NAME ultimate-gaming-client)
 
 if (FEATURE_INPUT_LIBCEC AND TARGET commons-cec-sdl)
     target_link_libraries(ultimate-gaming-client-lib PUBLIC commons-cec-sdl)
